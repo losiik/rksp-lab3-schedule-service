@@ -21,16 +21,13 @@ public class DataSyncService {
         log.info("========== Starting data synchronization ==========");
 
         try {
-            // 1. Получаем данные из data-service
             List<UserEventDto> events = dataServiceClient.fetchEvents();
 
-            // 2. Проверяем наличие данных
             if (events == null || events.isEmpty()) {
                 log.warn("No events to synchronize");
                 return;
             }
 
-            // 3. Отправляем данные в clickhouse-service
             clickHouseServiceClient.sendEvents(events);
 
             log.info("========== Data synchronization completed successfully ==========");

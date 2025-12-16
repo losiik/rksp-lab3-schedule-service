@@ -13,7 +13,6 @@ public class DataSyncScheduler {
 
     private final DataSyncService dataSyncService;
 
-    // Запускается согласно cron выражению из application.properties
     @Scheduled(cron = "${scheduler.sync.cron}")
     public void scheduleDataSync() {
         log.info("🔄 Scheduler triggered at: {}", java.time.LocalDateTime.now());
